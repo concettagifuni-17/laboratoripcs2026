@@ -15,7 +15,7 @@ int main() {
         //devo usare N-1 perchè l'elemento N non esiste ma facendo i+1 arrivo a N e mi stampa spazzatura  
         for (int i=0; i <N -1; i++) {
             if (arr[i] > arr[i+1]) {
-                double maggiore = arr[i]; // devo dichiarare una variabile con il valore del primo elemento altriemneti nello scambio mi scmabia due volte lo stesso valore
+                double maggiore = arr[i]; //variabile provvisoria nel for per fare lo scambio senza perdere valori
                 arr[i] = arr[i+1];
                 arr[i+1] = maggiore;
                 ordinato = false;
@@ -23,7 +23,6 @@ int main() {
         }
     }
     
-    //per stampare tutto l'array faccio un for
     for (int i=0; i < N; i++) {
         cout << arr[i] << endl;
     }
