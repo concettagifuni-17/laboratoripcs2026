@@ -6,3 +6,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wshadow -Werror=vla")
 
 add_executable(alg1 alg1.cpp)
+add_executable(stampascalari stampascalari.cpp)
+add_executable(posmemoria posmemoria.cpp)
