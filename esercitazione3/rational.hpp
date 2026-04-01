@@ -69,10 +69,11 @@ public:
             return *this;
         }
     }
-    // se uno dei due è infinito
+    // se il primo dei due è infinito
     if (den_ == 0) {
         return *this;
     }
+    // se il secondo è infinito
     if (other.den_ == 0) {
         num_ = other.num_; // così consideriamo il segno dell'infinito 
         den_ = 0;
@@ -170,7 +171,7 @@ public:
     }
 
     rational& operator/=(const rational& other) {
-    // qualsiais diviasione con NaN da NaN
+    // qualsiasi divisione con NaN da NaN
     if ((den_ == 0 && num_ == 0) || (other.den_ == 0 && other.num_ == 0)) {
         num_ = 0;
         den_ = 0;
