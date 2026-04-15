@@ -1,7 +1,7 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <algorithm>
-#include <cstdlib>
 using namespace std;
 
 #include "randfiller.h"
@@ -12,36 +12,46 @@ int main() {
     randfiller rf;
     timecounter tc;
 
+    ofstream out("sort_times.dat");
+    if (!out) {
+        cerr << "Errore nell'apertura del file.\n";
+        return 1;
+    }
+
     for (int i = 4; i <= 8192; i= i*2 ) {
         vector<int> vec(i);
+        
         rf.fill(vec, -1000, 1000);
-
-        vector<int> v_bubble = vec;
-        vector<int> v_insertion = vec;
-        vector<int> v_selection = vec;
-        vector<int> v_sort = vec;
-
         tc.tic();
-        bubble_sort(v_bubble);
+        bubble_sort(vec);
         double t_bubble = tc.toc();
         
+        rf.fill(vec, -1000, 1000);
         tc.tic();
-        insertion_sort(v_insertion);
+        insertion_sort(vec);
         double t_insertion = tc.toc();
 
+        rf.fill(vec, -1000, 1000);
         tc.tic();
-        selection_sort(v_selection);
+        selection_sort(vec);
         double t_selection = tc.toc();
 
+        rf.fill(vec, -1000, 1000);
         tc.tic();
-        sort(v_sort.begin(), v_sort.end());
+        sort(vec.begin(), vec.end());
         double t_sort = tc.toc();
 
         cout << "Dimensione: " << i << "\n";
         cout << "t_bubble: " << t_bubble << "\n";
         cout << "t_insertion: " << t_insertion << "\n"; 
         cout << "t_selection: " << t_selection << "\n"; 
-        cout << "t_sort: " << t_sort << "\n\n";      
+        cout << "t_sort: " << t_sort << "\n\n";
+        
+        out << i << " " << t_bubble << " " << t_insertion << " " << t_selection << " " << t_sort << "\n"; 
     }
+
+    out.close();
+    cout << "Misure salvate anche nel file 'sort_times.dat' nel seguente ordine: dimensione, bubble, insertion, selection, standard sort" << "\n";
+
     return 0;
 }
