@@ -1,0 +1,12 @@
+In questa esercitazione ho inizialmente implementato gli algoritmi Merge Sort e Quick Sort seguendo gli pseudocodici forniti nella traccia, facendo però attenzione alla conversione degli indici perché nello pseudocodice gli indici partono da 1, mentre nei vettori C++ partono da 0.
+Poi come nella precedente esercitazione ho provato gli algoritmi con i test.
+Nel 'measure_sorts.cpp' a differenza dell'esercitazione 4 invece che utilizzare un solo tempo, per avere una misurazione più precisa ho utilizzato 10 vettori per dimensione, e dopo aver misurato quanto tempo gli algoritmi impiegassero per ordinarli tutti e 10 di fila ho fatto la media, come richiesto.
+Per individuare la soglia n sotto la quale un algoritmo quadratico può risultare più conveniente, ho confrontato prima i tre algoritmi quadratici tra loro, scegliendo quello più veloce. Ho poi confrontato questo tempo con il più efficiente tra Merge Sort e Quick Sort. In questo modo la soglia viene scelta solo quando il miglior algoritmo quadratico risulta più veloce.
+Il risultato per i dati nel file 'sort_times2.dat' è che n = 40, e la funzione ad andamento quadratico più efficiente risulta essere l'insertion sort.
+Attenzione però, questo non è un dato assoluto, per esempio per circa n = 20 il quick risulta più veloce, sotto la dimensione 40 insertion però risulta, in generale, più efficiente. 
+La soglia esatta si troverà tra circa 40 e 50, infatti dalla dimensione 50 in poi circa è stabilmente più veloce il quick sort.
+Ho proseguito implementando appunto una nuova funzione ibrida, chiamata nuovo_quick, che usa insertion sort quando il vettore da ordinare ha dimensione minore alla soglia trovata, mentre usa il classico quick sort quando la dimensione è più grande.
+
+Dai risultati complessivi si osserva che bubble sort, selection sort e insertion sort crescono rapidamente all’aumentare della dimensione del vettore, coerentemente con il loro andamento quadratico. Merge Sort e Quick Sort risultano invece più adatti per vettori grandi.
+std::sort rimane la funzione più efficiente. 
+La versione ibrida nuovo_quick è utile perché combina il vantaggio di insertion sort sui vettori piccoli e l’efficienza di quick sort sui vettori più grandi.
