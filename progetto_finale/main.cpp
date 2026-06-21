@@ -5,34 +5,34 @@
 using namespace std;
 
 int main(int argc, const char* argv[]) {
-    vector<Component> components;
+    vector<Componenti> componenti;
 
-    // Se passo il nome del file da terminale, legge da file.
-    // Altrimenti legge da input standard.
     if (argc >= 2) {
-        components = read_netlist_file(argv[1]);
+        componenti = read_netlist_file(argv[1]);
     } else {
-        cerr << "Netlist mancante." << "\n";
+        cerr << "Errore: Netlist mancante.\n";
+        cerr << "Uso: ./main nome_file_netlist.txt\n";
+        return 1;
     }
 
     // Se la lettura fallisce, read_netlist restituisce un vettore vuoto.
-    if (components.empty()) {
+    if (componenti.empty()) {
         return 1;
     }
 
-    Circuit circuit = build_circuit(components);
+    Circuiti circuito = build_circuit(componenti);
 
-    if (!circuit.valid) {
+    if (!circuito.valid) {
         return 1;
     }
 
-    vector<ResistorResult> results = solve_circuit_checked(circuit);
+    vector<RisultatiR> risultati = solve_circuit_checked(circuito);
 
-    if (results.empty()) {
+    if (risultati.empty()) {
         return 1;
     }
 
-    print_resistor_results(cout, results);
+    print_resistor_results(cout, risultati);
 
     return 0;
 }
